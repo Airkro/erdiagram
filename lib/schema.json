@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "erDiagram data",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "数据库名",
+      "minLength": 1
+    },
+    "note": {
+      "title": "数据库注释",
+      "type": "string"
+    },
+    "tables": {
+      "type": "object",
+      "title": "所有数据表",
+      "additionalProperties": {
+        "type": "object",
+        "title": "单个数据表",
+        "properties": {
+          "note": {
+            "type": "string",
+            "title": "表格备注"
+          },
+          "fields": {
+            "type": "array",
+            "title": "数据表字段",
+            "items": {
+              "type": "object",
+              "title": "单个数据表字段",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "数据名称",
+                  "minLength": 1
+                },
+                "type": {
+                  "type": "string",
+                  "title": "数据类型",
+                  "minLength": 1
+                },
+                "pk": {
+                  "const": true,
+                  "title": "是否为主键",
+                  "description": "缺省默认为 false"
+                },
+                "note": {
+                  "title": "字段备注",
+                  "type": "string"
+                },
+                "unique": {
+                  "const": true,
+                  "title": "是否唯一列",
+                  "description": "缺省默认为 false"
+                },
+                "nullable": {
+                  "const": true,
+                  "title": "是否允许为空",
+                  "description": "缺省默认为 false"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "enums": {
+      "title": "所有枚举",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "title": "单个枚举定义",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value"
+          ]
+        }
+      }
+    },
+    "refs": {
+      "type": "array",
+      "title": "所有关联关系",
+      "items": {
+        "title": "一对关联关系",
+        "type": "object",
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "关联关系名称",
+            "minLength": 1
+          },
+          "from": {
+            "title": "一个端点",
+            "$ref": "#/$defs/endpoint"
+          },
+          "to": {
+            "title": "另一个端点",
+            "$ref": "#/$defs/endpoint"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "endpoint": {
+      "type": "object",
+      "required": [
+        "table",
+        "field"
+      ],
+      "properties": {
+        "table": {
+          "type": "string",
+          "title": "表名",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "title": "字段名",
+          "minLength": 1
+        },
+        "relation": {
+          "title": "所处关系类型",
+          "enum": [
+            1,
+            "1",
+            "*"
+          ]
+        }
+      }
+    }
+  }
+}
