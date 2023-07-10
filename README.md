@@ -21,17 +21,16 @@ npm install erdiagram --save
 ## Usage
 
 ```js
+import { exporter } from '@dbml/core';
 import { ErDiagram } from 'erdiagram';
 
-const data = {
-  $schema: '/node_modules/erdiagram/lib/schema.json',
-  tables: {},
-  ...others
-};
+import source from './example.dbml';
+
+const json = exporter.export(source, 'json');
 
 const erd = new ErDiagram({
   container: document.querySelector('#container')
 });
 
-erd.fromJSON(data);
+erd.fromJSON(JSON.parse(json));
 ```

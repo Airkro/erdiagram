@@ -1,0 +1,52 @@
+Project open {
+  database_type: 'MongoDB'
+  Note: '开放平台管理体系'
+}
+
+Table c_open_app {
+  id ObjectId [pk, unique, note: '应用 appid']
+  name varchar(50) [not null, note: '应用名称']
+  secret varchar(32) [not null, note: '应用 secret']
+  createTime timestamp [not null, note: '创建时间']
+  tenant varchar(20) [not null, note: '厂商编码']
+  note: '开放平台厂商接入应用表'
+}
+
+Table c_tenant {
+  id ObjectId [pk, unique]
+  code varchar(20) [unique, not null, note: '企业编码']
+  name varchar(50) [unique, not null, note: '企业名称']
+  type TenantType [not null, note: '企业类型']
+  status TenantStatus [not null, note: '企业状态']
+  duty varchar(50) [note: '负责人']
+  createTime timestamp [not null, note: '创建时间']
+  note: '开放平台厂商（租户）表'
+}
+
+Enum TenantType {
+  CREATE [note: '创建']
+  REGISTER [note: '注册']
+}
+
+Enum TenantStatus {
+  NORMAL [note: '正常']
+  FORBIDDEN [note: '禁用']
+  WAITING [note: '待审核']
+}
+
+Table c_open_webhook {
+  id ObjectId [pk, unique]
+  scheme varchar(10) [not null, default: 'https', note: '第三方平台协议：https/http']
+  host varchar(50) [not null, note: '第三方平台域名']
+  port integer [not null, note: '第三方平台端口']
+  path varchar(50) [note: '第三方平台自定义路径']
+  appid varchar(50) [not null, note: '第三方平台分配的 appid']
+  secret varchar(50) [not null, note: '第三方平台分配的 secret']
+  createTime timestamp [note: '创建时间']
+  tenant varchar(20) [unique, not null, note: '厂商编码']
+  note: '开放平台厂商接入回调表'
+}
+
+Ref: c_tenant.code < c_open_app.tenant
+
+Ref: c_tenant.code - c_open_webhook.tenant
