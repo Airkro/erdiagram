@@ -1,6 +1,6 @@
 {
   "name": "erdiagram",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A viewer of ER diagrams",
   "license": "MIT",
   "author": {
@@ -34,27 +34,28 @@
   "scripts": {
     "lint:staged": "nice-move lint staged",
     "prepare": "nice-move git hooks",
-    "prepublishOnly": "npm run lint:staged",
+    "prepublishOnly": "pnpm run lint:staged",
     "serve": "node --watch test/serve.mjs"
   },
   "dependencies": {
-    "@antv/layout": "^0.3.24",
-    "@antv/x6": "^2.15.3",
+    "@antv/layout": "^0.3.25",
+    "@antv/x6": "^2.18.1",
     "css-bit": "^0.4.2",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@bring-it/npm": "^0.3.9",
-    "@chialab/esbuild-plugin-html": "^0.17.3",
-    "@dbml/core": "^2.6.1",
-    "@nice-move/cli": "^0.10.14",
-    "@nice-move/eslint-config-base": "^0.9.23",
-    "@nice-move/prettier-config": "^0.9.8",
-    "esbuild": "^0.19.5",
-    "eslint": "^8.52.0",
-    "garou": "^0.6.17",
-    "prettier": "^3.0.3"
+    "@bring-it/npm": "^0.5.3",
+    "@chialab/esbuild-plugin-html": "^0.18.2",
+    "@dbml/core": "^3.4.3",
+    "@nice-move/cli": "^0.11.11",
+    "@nice-move/eslint-config-base": "^0.11.7",
+    "@nice-move/prettier-config": "^0.11.3",
+    "esbuild": "^0.21.1",
+    "eslint": "^8.57.0",
+    "garou": "^0.7.4",
+    "prettier": "^3.2.5"
   },
+  "packageManager": "pnpm@9.1.0",
   "engines": {
     "node": ">=14.17.0"
   },
@@ -64,6 +65,9 @@
   },
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
+  },
+  "nice-move": {
+    "import-groups": "nice-move-preset"
   },
   "prettier": "@nice-move/prettier-config"
 }
