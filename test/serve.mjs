@@ -11,8 +11,10 @@ const ctx = await esbuild.context({
 
 await ctx.watch();
 
-const { host, port } = await ctx.serve({
+const { hosts, port } = await ctx.serve({
   servedir: 'dist',
 });
 
-console.log('On', host, port);
+for (const host of hosts) {
+  console.log('Serve:', ['http://', host, ':', port].join(''));
+}

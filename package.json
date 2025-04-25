@@ -1,11 +1,10 @@
 {
   "name": "erdiagram",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A viewer of ER diagrams",
   "license": "MIT",
   "author": {
-    "name": "Eric",
-    "email": "airkro@qq.com"
+    "name": "Eric Chen"
   },
   "keywords": [
     "antv",
@@ -21,7 +20,7 @@
   "homepage": "https://github.com/airkro/erdiagram",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airkro/erdiagram.git"
+    "url": "git+https://github.com/airkro/erdiagram.git"
   },
   "bugs": {
     "url": "https://github.com/airkro/erdiagram/issues"
@@ -44,30 +43,22 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@bring-it/npm": "^0.5.3",
+    "@bring-it/npm": "^0.6.0",
     "@chialab/esbuild-plugin-html": "^0.18.2",
-    "@dbml/core": "^3.4.3",
-    "@nice-move/cli": "^0.11.11",
-    "@nice-move/eslint-config-base": "^0.11.7",
-    "@nice-move/prettier-config": "^0.11.3",
-    "esbuild": "^0.21.1",
-    "eslint": "^8.57.0",
-    "garou": "^0.7.4",
-    "prettier": "^3.2.5"
+    "@dbml/core": "^3.13.0",
+    "@nice-move/all-in-base": "^0.4.21",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "garou": "^0.9.5",
+    "prettier": "^3.5.3"
   },
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@10.9.0",
   "engines": {
     "node": ">=14.17.0"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "eslintConfig": {
-    "extends": "@nice-move/eslint-config-base"
-  },
-  "nice-move": {
-    "import-groups": "nice-move-preset"
   },
   "prettier": "@nice-move/prettier-config"
 }
